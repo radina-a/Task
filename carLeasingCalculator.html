@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <body onload="calcCost()">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" type="text/css" href="styles.css" />
+      <title>Car Leasing Calculator</title>
+    </head>
+    <div class="main">
+      <h1>Car Leasing Calculator</h1>
+      <div class="container-horizontal">
+        <div class="container-vertical">
+          <div class="carTypeDDL">
+            Car type:
+            <select id="carType" onchange="calcCost()">
+              <option value="2.99" selected="selected">Brand new</option>
+              <option value="3.7">Used</option>
+            </select>
+            <br />
+          </div>
+          <form class="container-vertical">
+            <label for="fname">Car Value (€10,000 - €200,000):</label>
+            <input
+              id="carAmountInput"
+              name="carAmountInput"
+              value="10000"
+              min="10000"
+              max="200000"
+              oninput="this.form.amountRange.value=this.value"
+              onchange="limitRange(this)"
+            />
+            <input
+              type="range"
+              name="amountRange"
+              min="10000"
+              max="200000"
+              value="0"
+              oninput="this.form.carAmountInput.value=this.value"
+              onchange="calcCost()"
+            />
+          </form>
+        </div>
+        <div class="container-vertical">
+          <div class="leasePeriodDDL">
+            Lease Period (months):
+            <select id="period" onchange="calcCost()">
+              <option value="12" selected="selected">12</option>
+              <option value="24">24</option>
+              <option value="36">36</option>
+              <option value="48">48</option>
+              <option value="60">60</option>
+            </select>
+          </div>
+          <form class="container-vertical">
+            <label for="fname">Down Payment (10% - 50%):</label>
+            <input
+              id="downPaymentInput"
+              name="downPaymentInput"
+              min="10"
+              max="50"
+              value="10"
+              oninput="this.form.downPaymentInputRange.value=this.value"
+              step="5"
+              onchange="limitRange(this)"
+            />
+            <input
+              type="range"
+              name="downPaymentInputRange"
+              min="10"
+              max="50"
+              value="0"
+              step="5"
+              oninput="this.form.downPaymentInput.value=this.value"
+              onchange="calcCost()"
+            />
+          </form>
+        </div>
+      </div>
+      <div class="divider-horizontal"></div>
+      <h2>Leasing Details</h2>
+      <div class="container-horizontal">
+        <div class="container-vertical">
+          <p>Total Leasing Cost: <span id="totalCost"></span></p>
+          <p>Down payment: <span id="downPayment"></span></p>
+        </div>
+        <div class="divider-vertical"></div>
+        <div class="container-vertical">
+          <p>Monthly installment: <span id="pmt"></span></p>
+          <p>Interest Rate: <span id="interestRate"></span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="carLeasingCalculator.js"></script>
+</html>
